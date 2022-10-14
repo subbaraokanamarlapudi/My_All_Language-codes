@@ -1,0 +1,69 @@
+import java.util.*;
+public class MatRev
+{
+    int arr[][];
+    int m;
+    int n;
+    MatRev(int mm,int nn)
+    {
+        m=mm;
+        n=nn;
+        arr=new int[m][n];
+    }
+    void fillarray()
+    {
+        Scanner sc=new Scanner(System.in);
+        for(int r=0;r<m;r++)
+        {
+            System.out.println("Enter elements for row no."+(r+1));
+            for(int c=0;c<n;c++)
+            {
+                arr[r][c]=sc.nextInt();
+            }
+        }
+    }
+    int reverse(int x)
+    {
+        int rev=0;
+        while(x>0)
+        {
+            int digit=x%10;
+            rev=rev*10+digit;
+            x=x/10;
+        }
+        return rev;
+    }
+    void revMat()
+    {
+        for(int r=0;r<m;r++)
+        {
+            for(int c=0;c<n;c++)
+            {
+                int p=arr[r][c];
+                int q=reverse(p);
+                arr[r][c]=q;
+            }
+        }
+    }
+    void show()
+    {
+        for(int r=0;r<m;r++)
+        {
+            for(int c=0;c<n;c++)
+            {
+                System.out.print(arr[r][c]+"\t");
+            }
+            System.out.println();
+        }
+    }
+    public static void main (String args[])
+    {
+        MatRev obj=new MatRev(3,4);
+        obj.fillarray();
+        System.out.println("Original matrix...");
+        obj.show();
+        obj.revMat();
+        System.out.println("Updated matrix...");
+        obj.show();
+    }
+}
